@@ -1,33 +1,22 @@
-class StorageManager {
-    constructor() {
-        this.backends = {};
+public class InMemoryRepository<T, U extends Serializable> implements CrudRepository<T, U> {
+
+    private final Map<U, T> hashMap = new HashMap<>();
+
+    private final Supplier<U> idGenerator;
+    private final BiConsumer<T, U> idSetter;
+    private final Function<T, U> idGetter;
+
+    public InMemoryRepository(Supplier<U> idGenerator, BiConsumer<T, U> idSetter, Function<T, U> idGetter) {
+        this.idGenerator = idGenerator;
+        this.idSetter = idSetter;
+        this.idGetter = idGetter;
     }
 
-    registerBackend(name, backend) {
-        this.backends[name] = backend;
-    }
-
-    async store(backendName, key, data) {
-        if (!this.backends[backendName]) {
-            throw new Error(`Storage backend "${backendName}" not registered.`);
+    @Override
+    public <S extends T> S save(@NonNull S entity) {
+        if (idGetter.apply(entity) == null) {
+            var id = idGenerator.get();
+            idSetter.accept(entity, id);
         }
-        return this.backends[backendName].store(key, data);
-    }
-
-    async retrieve(backendName, key) {
-       if (!this.backends[backendName]) {
-            throw new Error(`Storage backend "${backendName}" not registered.`);
-        }
-        return this.backends[backendName].retrieve(key);
-    }
-
-    async delete(backendName, key) {
-        if (!this.backends[backendName]) {
-            throw new Error(`Storage backend "${backendName}" not registered.`);
-        }
-        return this.backends[backendName].delete(key)
-    }
 }
-
-const storageManager = new StorageManager();
 
