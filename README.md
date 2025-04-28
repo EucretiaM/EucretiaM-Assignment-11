@@ -1,4 +1,4 @@
-Assignment 11: Implementing a Persistence
+Implementing a Persistence
 Repository Layer
 
 Objective:
