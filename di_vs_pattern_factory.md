@@ -9,38 +9,38 @@ Maintainability: Code becomes easier to maintain and extend, as changes to depen
 
 Example
 
-class Car
+class MathApp
 {
-    private Engine engine;
-    private SteeringWheel wheel;
-    private Tires tires;
+    private Learner learner;
+    private Assessment assessment;
+    private Submit submit;
 
-    public Car(Engine engine, SteeringWheel wheel, Tires tires)
+    public SubmitAssessment(Learner learner, Assessment assessment, Submit submit)
     {
-        this.engine = engine;
-        this.wheel = wheel;
-        this.tires = tires;
+        this.learner = learner;
+        this.assessment = assessment;
+        this.submit = submit;
     }
 }
 
 
 
 What is the Factory Pattern?
-The Factory Method Design Pattern is a creational design pattern used in software engineering to provide an interface for creating objects in a superclass, while allowing subclasses to alter the type of objects that will be created.
+The Factory Method Design Pattern is a creational design pattern used in software engineering. It provides an interface for creating objects in a superclass while allowing subclasses to alter the type of objects that will be created.
 
 It encapsulates the object creation logic in a separate method, abstracting the instantiation process and promoting loose coupling between the creator and the created objects.
-This pattern enables flexibility, extensibility, and maintainability in the codebase by allowing subclasses to define their own implementation of the factory method to create specific types of objects.
+This pattern enables flexibility, extensibility, and maintainability in the codebase by allowing subclasses to define their factory method implementation to create specific types of objects.
 
 Example
 
-static class CarFactory
+static class MathApp
 {
-    public ICar BuildCar()
+    public IMathApp SubmitAssessment()
     {
-        Engine engine = new Engine();
-        SteeringWheel steeringWheel = new SteeringWheel();
-        Tires tires = new Tires();
-        ICar car = new RaceCar(engine, steeringWheel, tires);
+        Assessment assessment = new Assessment();
+        Learner learner = new Learner();
+        Submit submit = new Submit();
+        IMathApp submitAssessment = new TheNewAssessment(assessment, learner, submit);
         return car;
     }   
 }
