@@ -15,40 +15,11 @@ Flexibility: Classes become more flexible as they can easily switch between diff
 Testability: Dependency Injection facilitates easier unit testing, as dependencies can be easily replaced with mock objects.
 Maintainability: Code becomes easier to maintain and extend, as changes to dependencies can be made externally without modifying the class itself
 
-Example
-
-class Car
-{
-    private Engine engine;
-    private SteeringWheel wheel;
-    private Tires tires;
-
-    public Car(Engine engine, SteeringWheel wheel, Tires tires)
-    {
-        this.engine = engine;
-        this.wheel = wheel;
-        this.tires = tires;
-    }
-}
-
-
 
 What is the Factory Pattern?
-The Factory Method Design Pattern is a creational design pattern used in software engineering to provide an interface for creating objects in a superclass, while allowing subclasses to alter the type of objects that will be created.
+The Factory Method Design Pattern is a creational design pattern used in software engineering. It provides an interface for creating objects in a superclass while allowing subclasses to alter the type of objects that will be created.
 
 It encapsulates the object creation logic in a separate method, abstracting the instantiation process and promoting loose coupling between the creator and the created objects.
-This pattern enables flexibility, extensibility, and maintainability in the codebase by allowing subclasses to define their implementation of the factory method to create specific types of objects.
+This pattern enables flexibility, extensibility, and maintainability in the codebase by allowing subclasses to define their factory method implementation to create specific types of objects.
 
-Example
 
-static class CarFactory
-{
-    public ICar BuildCar()
-    {
-        Engine engine = new Engine();
-        SteeringWheel steeringWheel = new SteeringWheel();
-        Tires tires = new Tires();
-        ICar car = new RaceCar(engine, steeringWheel, tires);
-        return car;
-    }   
-}
